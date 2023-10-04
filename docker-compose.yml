@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  cursos-database:
+    container_name: cursos-database
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=cursos123
+      - MYSQL_DATABASE=cursos
+    ports:
+      - '3306:3306'
+    networks:
+      - backend
+    volumes:
+      - mysql-cursos-data:/var/libs/mysql
+ 
+volumes:
+  mysql-cursos-data:
+networks:
+  backend:
