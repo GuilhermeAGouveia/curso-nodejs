@@ -31,10 +31,14 @@ module.exports = {
     return res.json(cursoDeletado);
   },
   update: async (req, res) => {
-    const { id } = req.params;
-    const parcialcurso = req.body;
+    try {
+      const { id } = req.params;
+      const parcialcurso = req.body;
 
-    const cursoAtualizado = await Service.update(+id, parcialcurso);
-    return res.json(cursoAtualizado);
+      const cursoAtualizado = await Service.update(+id, parcialcurso);
+      return res.json(cursoAtualizado);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   },
 };

@@ -3,6 +3,7 @@ const morgan = require("morgan")
 const professorRouter = require("./rotas/professor")
 const cursoRouter = require("./rotas/curso")
 const alunoRouter = require("./rotas/aluno")
+const matriculaRouter = require("./rotas/matricula")
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use([
     professorRouter,
     cursoRouter,
     alunoRouter,
+    matriculaRouter,
 ])
 
 

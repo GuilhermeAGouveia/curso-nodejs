@@ -4,6 +4,12 @@ const prismaClient = new prisma.PrismaClient();
 
 module.exports = {
   create: async (curso) => {
+    await prismaClient.professor.findUniqueOrThrow({
+      where: {
+        id: curso.professor_id
+      }
+    })
+
     const cursoCriado = await prismaClient.curso.create({
       data: curso,
     });
@@ -51,6 +57,14 @@ module.exports = {
     return cursoDeletado;
   },
   update: async (id, parcialcurso) => {
+    if (parcialcurso?.professor_id) {
+      await prismaClient.professor.findUniqueOrThrow({
+        where: {
+          id: parcialcurso.professor_id
+        }
+      })
+    }
+
     const cursoAtualizado = await prismaClient.curso.update({
       where: {
         id,
